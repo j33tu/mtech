@@ -1,4 +1,4 @@
-git branch
+git branch | filter * 
 git status
 git add .
 $d=date
