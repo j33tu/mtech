@@ -1,0 +1,12 @@
+﻿,ServiceTier,Meter,PartNumber,CostUSD,Cost,Currency
+Bandwidth,,Standard Data Transfer Out,,0.10342381,8.457094211,INR
+Bandwidth,Inter-Region,Inter Continent Data Transfer Out - NAM or EU To Any,,0.009299332,0.760418032,INR
+Bandwidth,Inter-Region,Intra Continent Data Transfer Out,,0.000494179,0.040409613,INR
+Key Vault,,Operations,,5.7625E-06,0.000471207,INR
+Storage,Standard HDD Managed Disks,Disk Operations,,0.343174936,28.06184349,INR
+Storage,Standard HDD Managed Disks,S10 Disks,,7.273457075,594.7596769,INR
+Storage,Tables,Batch Write Operations,,0.000156277,0.012778944,INR
+Storage,Tables,LRS Data Stored,,0.000150185,0.012280831,INR
+Storage,Tiered Block Blob,All Other Operations,,7.41442E-05,0.006062863,INR
+Virtual Machines,Dv3/DSv3 Series Windows,D2 v3/D2s v3,,95.09666455,7776.173131,INR
+Virtual Network,IP Addresses,Basic IPv4 Static Public IP,,3.199525225,261.629177,INR
