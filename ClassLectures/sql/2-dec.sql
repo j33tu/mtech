@@ -349,10 +349,42 @@ group by department_id
 order by sal_expense desc
 limit 1;
 
+select sum(salary) as sal_expense, department_id from employees
+group by department_id
+having sum(salary) >= all 
+(select sum(salary)  from employees group by department_id);
 
 
+--  display departmenet with hightest emp count 
+
+select count(employee_id) as emp_count, department_id from employees
+group by department_id
+having count(employee_id) <= all 
+(select count(employee_id)  from employees
+ group by department_id);
 
 
+-- show departments having less salary than department 80 
+
+select avg(salary) as max_salary,department_id from employees
+group by department_id 
+having avg(salary) < (select avg(salary) from employees where department_id=80);
+
+-- select clause sub query
+
+select count(employee_id) as emp_count,
+(select count(department_id) from departments) dept_count
+from employees;
+
+-- select employee
+
+select employee_id,salary,(select department_name from departments as department_name where e.department_id=department_id ) as department_name from employees e;
+
+-- select display employee name and manager name
 
 
+select concat(first_name,'  ',last_name) as emp_name , (select first_name  from employees where employee_id=e.manager_id) as manager_name
+from employees e;
+
+-- 
 
