@@ -231,4 +231,128 @@ select * from employees where salary =
 (select distinct(salary) from employees
 order by salary desc limit 1,1);
 
+-- display frist name salary department id for those employee who ean less than ag salary of laura's department
+
+
+
+select first_name,salary,department_id from employees where salary < 
+(select avg(salary) from employees where department_id = 
+(select department_id from employees where first_name='laura'));
+
+-- above is called multi level sub query 
+
+
+-- list all emp earning equalt to devid
+
+use hr;
+
+select * from employees where salary in ( (select salary from employees where first_name='david'));
+
+-- for multiple  returns use in (list of values ) use membership operators 
+select * from employees where salary >  any  (select salary from employees where first_name='david');
+
+select * from employees where salary  >   (select min(salary) from employees where first_name='david');
+
+-- salary more than all devids
+
+-- = any or in are same 
+
+-- emp earning more than avg salary of any department
+
+
+
+select * from employees where salary > any
+(select avg(salary) from employees group by department_id);
+
+-- list the department where at least  oe employes is working
+
+
+select department_id , department_name from departments 
+where department_id in (select distinct(department_id) from employees where department_id is not null);
+
+-- departments where people not working 
+
+select department_id , department_name from departments 
+where department_id  not in (select distinct(department_id) from employees where department_id is not null);
+
+
+-- list all manager name 
+
+select * from employees 
+where employee_id in (select  distinct(manager_id) from employees);
+
+select * from employees 
+where employee_id in (select  distinct(manager_id) from employees);
+
+-- list all employess belongs to location 1700 
+
+
+select * from employees ;
+
+select * from employees where department_id in (
+select department_id from departments
+where location_id=1700) ;
+
+
+
+-- exist operator 
+
+select * from employees where exists 
+(select * from employees where department_id=80 );
+
+select * from employees where exists 
+(select * from employees where department_id=800 );
+
+-- disply department where at least and employee is there 
+
+
+select department_id,department_name from departments d where exists 
+(select * from employees where department_id=d.department_id);
+
+-- not exist 
+select department_id,department_name from departments d where not exists 
+(select * from employees where department_id=d.department_id);
+
+
+-- list the departmet name where at least 1 employees earning more than 10000 
+-- using in and exist operators 
+
+select department_id,department_name from departments d where not exists 
+(select * from employees where department_id=d.department_id);
+
+select department_id,department_name from departments where department_id in 
+(select distinct department_id from employees where salary >10000);
+
+
+
+select department_id,department_name from departments where 
+(select distinct department_id from employees where salary >10000);
+
+select department_id,department_name from departments d  where exists
+(select '1' from employees where salary >10000 and department_id=d.department_id) ;
+
+
+-- co relation more data 
+
+-- list 
+
+-- list employes when as salary is more than the average salary of his her own departmenet 
+
+
+select * from employees e where salary > 
+(select avg(salary) from employees where department_id=e.department_id);
+
+-- find out which department has the most expense as salary 
+
+select sum(salary) as sal_expense, department_id from employees
+group by department_id
+order by sal_expense desc
+limit 1;
+
+
+
+
+
+
+
 
