@@ -1,0 +1,176 @@
+
+
+
+use hr;
+
+-- only common records 
+
+select first_name,e.department_id,department_name,salary
+from employees e  inner join departments d
+on e.department_id=d.department_id;
+
+
+-- left join  common + left table all records , even if its Null it will deisplay 
+
+
+select first_name,e.department_id,department_name,salary
+from employees e  left join departments d
+on e.department_id=d.department_id;
+
+-- right join 
+-- table1 left join table2 == table2 right on table1 
+
+-- need name salary department id department name and city from locations
+
+Select first_name,salary,e.department_id,department_name,city
+from employees e join departments d
+on e.department_id = d.department_id
+join locations l
+on d.location_id=l.location_id;
+
+-- with nulls use left join 
+
+Select first_name,salary,e.department_id,department_name,city
+from employees e left join departments d
+on e.department_id = d.department_id
+left join locations l
+on d.location_id=l.location_id;
+
+use hr;
+
+select * from employees limit 300;
+
+-- display first name last name department id and department ame
+-- for all employee for department 80,40
+
+select first_name,last_name,e.department_id,department_name  
+from employees  e join departments d
+on e.department_id=d.department_id
+where e.department_id in (80,40);
+
+--  display all departments including the department where no empoyeees are working 
+
+
+select * from departments;
+
+-- display the department name where employees are working 
+
+select distinct d.department_id,department_name 
+from departments d join employees e
+on d.department_id=e.department_id;
+-- may or may not needed where e.department_id is not Null;
+
+-- where no employees are working 
+
+select distinct d.department_id,department_name ,employee_id
+from departments d left join employees e
+on d.department_id=e.department_id
+where employee_id is null;
+
+-- where emp are working and se distinct 
+
+select distinct d.department_id,department_name ,employee_id
+from departments d left join employees e
+on d.department_id=e.department_id
+where employee_id is not null;
+
+
+-- 
+
+-- display job title,  full name of employee and difference between max salary for the job and salary for employee
+
+use hr;
+select job_title,concat(first_name,'  ',last_name) employee_name,max_salary,salary,max_salary-salary diff_amount
+from employees e join jobs j
+on e.job_id =  j.job_id
+where max_salary-salary<1000;
+
+-- display department name aerage salary and number of employees working in that department 
+
+select * from departments;
+select department_name,avg(salary) avg_salary,count(employee_id)
+from departments d join employees e
+on d.department_id=e.department_id
+group by department_name;
+
+-- 
+
+select concat(first_name,'  ',last_name) as full_name,salary,e.department_id ,city
+from employees e join departments d
+on e.department_id=d.department_id
+join locations l
+on d.location_id=l.location_id
+where l.city='London';
+
+
+
+-- get all employees earning more than empoyee_id 182 
+
+select * from locations;
+select salary from employees where employee_id=182;
+select first_name,salary from employees
+where salary > (select salary from employees where employee_id=182);
+
+
+select e1.first_name,e1.salary
+from employees e1 join employees e2
+on e1.salary>e2.salary
+where e2.employee_id=182;
+
+select e1.first_name,e1.salary
+from employees e1 join employees e2
+on e1.salary>e2.salary and e2.employee_id=182;
+
+
+-- display employee name along with his/her manager name
+
+select e1.first_name,e2.first_name as manager_name
+from employees e1 join employees e2
+on e1.manager_id=e2.employee_id;
+
+
+-- get all employees and their manager where joining date of emp is before managers joining date 
+
+select e1.first_name as emp_name,e2.first_name as manager_name,e1.hire_date as emp_join_date,e2.hire_date as manager_hire
+from employees e1 join employees e2
+on e1.manager_id=e2.employee_id and e1.hire_date < e2.hire_date;
+
+-- display the month in which more than 2 employees join in any department located in seattle
+
+
+select month(hire_date) as month,count(hire_date) as month_count
+from employees e join departments d
+on e.department_id=d.department_id
+join locations l
+on d.location_id=l.location_id
+where l.city='seattle'
+group by month(hire_date)
+having count(hire_Date) > 2
+order by month(hire_date);
+
+
+-- equi join vs non equi joins 
+
+-- 
+
+select first_name,hire_date from employees
+where datediff(current_date,hire_date)/365 < 25;
+
+
+-- cross Join 
+
+-- join two tables with out any condition  out put will be m * n  
+
+
+
+select * from employees cross join locations;
+
+
+-- natural join looks for any common keys existing in table , only common records will be fetched 
+
+-- sub queries 
+
+
+
+
+
