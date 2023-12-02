@@ -170,7 +170,65 @@ select * from employees cross join locations;
 
 -- sub queries 
 
+-- single row sub query >> return a single colume 
+
+-- display all employeed working for marketting dept
+
+Select * from employees where department_id = (select department_id from departments where department_name='marketing');
 
 
+-- above is single row sub query as using == operator 
+
+-- display the empoyee id , firstname salary of all employee who earn salary wquel to neena
+
+
+select employee_id,first_name,salary from employees
+where salary = (select salary from employees where first_name = 'Neena');
+
+-- this is called non co related sub query  no dependency query 
+
+
+--  emplloyees the employee details who all are earning salary and job id eals to neena
+
+select employee_id,first_name,salary from employees
+where (salary,job_id) = (select salary,job_id from employees where first_name = 'Neena');
+
+-- 
+select employee_id,first_name,salary from employees
+where salary = (select salary,job_id from employees where first_name = 'Neena') 
+and job_id = (select job_id from employees where first_name = 'Neena') ;
+
+-- display all employees who are earning more than the evg salary of an organization 
+
+
+select * from employees 
+where salary > (select avg(salary) from employees);
+
+
+-- list the reporties of payam
+
+
+select * from employees 
+where manager_id =  (select employee_id from  employees where first_name='payam');
+
+
+select e1.* from employees e1
+join employees e2 on e1.manager_id=e2.employee_id and e2.first_name='payam';
+
+-- display employee da
+
+
+select * from employees 
+where year(hire_date) = (select year(hire_date) from employees where first_name='clara')
+and first_name <> 'clara';
+
+select distinct(salary) from employees
+order by salary desc;
+
+select * from employees where salary = (select max(salary) from employees where salary < (select max(salary) from employees));
+
+select * from employees where salary = 
+(select distinct(salary) from employees
+order by salary desc limit 1,1);
 
 
