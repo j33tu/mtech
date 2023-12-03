@@ -615,8 +615,14 @@ rows between unbounded preceding and unbounded following) from employees;
 
 -- above was part of over clause 
 
-
 -- use cases 
 
 
+select salary,salary+lag(salary)over()
+from employees;
+
+
+select salary, sum(salary)over(
+rows between  1 preceding and current row  )
+from employees; 
 
