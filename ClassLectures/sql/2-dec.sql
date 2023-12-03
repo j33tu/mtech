@@ -387,4 +387,236 @@ select concat(first_name,'  ',last_name) as emp_name , (select first_name  from 
 from employees e;
 
 -- 
+select * from employees;
+
+
+-- sub quer in from clause 
+
+select first_name, salary , salary*0.1 as bonus 
+from employees
+where  salary*0.1 < 1000; 
+
+select * from 
+(select first_name, salary , salary*0.1 as bonus 
+from employees)temp
+where bonus < 1000;
+
+-- CTE with cluase 
+
+with temp as 
+(select first_name,salary,salary*0.1 as bonus from employees)
+select * from temp
+where bonus < 1000;
+
+
+-- 
+select count(employee_id) as emp_count,
+(select count(department_id) from departments) dept_count
+from employees;
+
+use hr;
+Select count(job_id) from employees
+where job_id like '%Clerk';
+
+
+-- solution 
+
+select revised_job_id,count(revised_job_id) from
+(select job_id,
+case when job_id like '%clerk' then 'clerk'
+else 'Manager'
+end revised_job_id
+from employees
+where job_id like '%mgr%' or job_id like '%man%' or job_id like '%clerk%')temp
+group by revised_job_id;
+
+
+
+select 'manager' job_id, count(job_id) as managers
+from employees
+where job_id like '%mgr%' or job_id like '%man%'
+union
+select 'clerk', count(job_id) as clearks
+from employees
+where job_id like '%clerk%' ;
+
+-- department_id 
+
+select count(job_id),job_id,department_id,(select count(job_id)  from employees where department_id=80) as total_count
+from employees  e
+where department_id = 80
+group by job_id;
+
+
+
+
+-- advanced aggregate functions   Over Functions 
+-- partition  by  summed up with other details as well  and group by  returns one value
+-- order by 
+-- framing and slicing 
+
+-- over -- Rank function , Aggegrate function , analytical functions
+
+
+
+-- ranking functions 
+select * from
+(select row_number()over() 's.no',first_name,salary
+from employees) temp
+where `s.no` between 10 and 20;
+
+-- rank ()
+select * from 
+(select first_name,salary,department_id,
+rank()over(order by salary desc) rnk
+from  employees) temp
+where rnk=2;
+
+-- -- in such conditions use dense rank  if rank skips any single rank as two people got same rank 
+select * from 
+(select first_name,salary,department_id,
+dense_rank()over(order by salary desc) rnk
+from  employees) temp
+;
+
+
+
+-- cummulative distributions 
+
+select first_name,salary, cume_dist()over(order by salary) dist_value
+from employees;
+
+
+
+-- aggregate functions min() max() sum() count() avg()
+
+-- let see how to use them with over functions 
+
+select first_name , department_id, salary,
+avg(salary)over()  avg_sal ,
+max(salary)over() max_sal
+from employees;
+
+select * from (
+select first_name , department_id, salary,
+avg(salary)over()  avg_sal ,
+max(salary)over() max_sal,
+dense_rank()over(order by salary desc) rnk
+from employees) t;
+
+-- 
+-- display employees who are earning salary more than avg salary of roganiza
+
+select * from employees where salary > (select avg(salary) from employees);
+
+
+select * from
+(select * ,
+avg(salary)over() avg_sal  from employees where department_id=t.department_id)t
+where salary > avg_sal;
+
+
+-- display employees where salary is more than avg salary of their department 
+select * from 
+(select first_name,salary,department_id,
+avg(salary)over(partition by department_id) avg_salary
+from employees) t
+where salary > avg_salary;
+
+-- list the senior employees
+
+select first_name from employees where hire_date = (select min(hire_date) from employees);
+
+select * from employees 
+where first_name = 'Steven';
+
+select * from employees where employee_id= (select min(employee_id) from employees);
+
+
+
+-- list all the seniors from each department 
+
+select * from(
+select first_name,department_id,hire_date,
+min(hire_date)over(partition by department_id) min_date 
+from employees) t
+where hire_date=min_date;
+
+
+
+select * from employees e where hire_date = (select min(hire_date) from employees where department_id=e.department_id);
+
+
+-- 
+--  display the recent hired emploees detaisl from each department 
+
+select * from employees e where hire_date = (select max(hire_date) from employees where department_id=e.department_id);
+
+select * from (
+select first_name,department_id,hire_date,
+dense_rank()over(partition by  department_id order by hire_date desc) rnk
+from employees)t
+where rnk=1;
+
+
+
+
+-- list the employee who joined tho organized recent half period 
+select * from employees where hire_date> (
+select adddate(min(hire_date),interval(
+select round(datediff(max(hire_date),min(hire_date))/2,0) from employees) day) mid_date
+from employees );
+
+
+
+-- lead() lag() functions 
+
+select  first_name,salary,
+lag(salary)over() next_salary from employees;
+
+
+-- list the emp id first job promoted job 
+
+select * from job_history;
+
+
+
+select  employee_id,
+lead(job_id)over() first_job,
+lag(job_id)over() first_job
+from employees
+order by employee_id; 
+
+-- uper not good
+
+-- mom solution below 
+select * from
+(
+select employee_id,job_id first_job,
+lead(job_id)over(partition by employee_id order by start_date) promoted_job
+from job_history)t
+where promoted_job is not null;
+
+
+
+-- first_value() , last_value()
+
+select salary , first_value(salary)over() from employees;
+select salary , last_value(salary)over() from employees;
+
+select salary , first_value(salary)over(order by salary desc) from employees;
+select salary , last_value(salary)over(order by salary desc) from employees;
+
+select salary , last_value(salary)over(order by salary desc
+rows between unbounded preceding and unbounded following) from employees;
+
+select salary , last_value(salary)over(order by salary desc
+rows between unbounded preceding and unbounded following) from employees;
+
+-- above was part of over clause 
+
+
+-- use cases 
+
+
 
