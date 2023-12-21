@@ -1,0 +1,13 @@
+id,name,platform,genre,editor_rating,size,released,updated
+1,Bugs Smash,iOS,action,6,101,13-07-2019,01-05-2020
+2,Rescue Mission,iOS,simulation,9,36,27-09-2019,30-07-2020
+3,Marvel ,iOS,roll play,10,125,25-10-2019,20-03-2020
+4,Miss Match,iOS,adventure,6,127,02-07-2019,01-05-2020
+5,Moto Racer GP,iOS,racing,7,127,25-07-2019,20-03-2020
+6,Gardenscape,Android,roll play,10,10,15-12-2019,01-12-2020
+7,Zoo Advent,Android,shooting,8,123,20-03-2019,01-12-2020
+8,Hitter Shock,Android,action,3,54,05-01-2019,01-05-2020
+9,Box Bix,Android,action,5,86,16-03-2019,01-12-2020
+10,Flight Simulator,Android,simulation,8,36,23-05-2019,30-07-2020
+11,Whip-lash,Windows Phone,action,6,55,07-01-2019,01-12-2020
+12,Too Fast Too Furious,Windows Phone,racing,8,44,20-02-2019,01-10-2020
