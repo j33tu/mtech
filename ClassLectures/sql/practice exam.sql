@@ -349,6 +349,7 @@ on e.department_id=d.department_id
 join locations l
 on d.location_id=l.location_id;
 
+-- joins 
 
 select first_name , e.department_id,department_name 
 from employees e 
@@ -357,3 +358,117 @@ on e.department_id = d.department_id
 join locations l
 on d.location_id=l.location_id;
 
+use hr;
+select first_name , last_name, e.department_id,department_name , city
+from employees e
+join departments d 
+on e.department_id=d.department_id
+join locations l
+on d.location_id=l.location_id
+where e.department_id in (80,90);
+
+select e.* ,department_name
+from employees e
+join departments d
+on e.department_id =  d.department_id ;
+
+
+-- class2 
+
+select city,first_name,e.department_id,department_name,salary
+from employees e
+join departments d
+on e.department_id=d.department_id
+join locations l
+on d.location_id=l.location_id;
+
+select city,first_name,e.department_id,department_name,salary
+from employees e
+join departments d
+on e.department_id=d.department_id
+join locations l
+on d.location_id=l.location_id
+where e.employee_id is null;
+
+-- 
+select job_title, concat(first_name,last_name) as emp_name, max_salary,salary,max_salary-salary as diff_sal
+from employees e 
+join jobs j
+on e.job_id=j.job_id
+where max_salary-salary< 1000;
+
+select * from jobs;
+
+
+select department_name,avg(salary) , count(employee_id)
+from departments d join employees e
+on e.department_id=d.department_id
+group by department_name
+order by count(employee_id) desc
+limit 1;
+
+
+select concat(first_name,last_name) as emp , salary,job_title
+from employees 
+having l.city='london';
+
+select * from locations;
+select * from employees; 
+
+
+select e1.first_name,e1.salary
+from employees e1
+join employees e2 
+on e1.salary > e2.salary
+where e2.employee_id=182;
+
+
+select e1.first_name as employee_name,e2.first_name as manager_name
+from employees e1 
+join employees e2
+on e1.manager_id=e2.employee_id;
+
+select e1.first_name employee_name, e2.first_name manager_name
+from employees e1
+join employees e2
+on e1.manager_id=e2.employee_id;
+
+select e1.first_name  as emp_name ,e1.hire_date emp_joinDate,e2.hire_date as man_joinDate,e2.first_name as man_namen 
+from employees e1
+join employees e2
+on e1.hire_date < e2.hire_date;
+
+
+select month(hire_date) , count(hire_date) from 
+employees
+join departments d using (department_id)
+join locations l using (location_id)
+where l.city = 'seattle'
+group by month(hire_date)
+having count(hire_date) >2;
+
+
+-----------------------------------------------------------------------------
+
+
+-- equi and non equi join
+
+select employee_id  from employees cross join departments;
+
+-- subquery 
+
+select * from employees 
+join departments d using(department_id)
+where department_name='marketing';
+
+select * from employees where department_id =(select department_id from departments where department_name = 'marketing');
+
+select first_name,employee_id,salary from employees where salary =(select salary from employees where first_name= 'neena');
+
+
+select * from employees
+where salary > (select avg(salary) from employees);
+
+
+select * from employees
+where manager_id = (select employee_id from employees where first_name='payam');
