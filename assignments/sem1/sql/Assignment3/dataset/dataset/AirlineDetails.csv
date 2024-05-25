@@ -1,0 +1,73 @@
+Flight_ID,Airline,Country,Punctuality,Service_Quality,AirHelp_Score
+1,Qatar Airways,qatar,8.9,9.5,9.08
+2,Lufthansa,germany,7.6,9.5,8.57
+3,Etihad Airways,United Arab Emirates,8.6,9.3,8.43
+4,Singapore Airlines,singapore,8.5,9.8,8.33
+5,South African Airways,South Africa,8.5,7.8,8.31
+6,Austrian Airlines AG dba Austrian,austria,8,8,8.29
+7,Aegean Airlines,greece,9,8.3,8.19
+8,Qantas,australia,8.9,8,8.12
+9,Air Malta,malta,8.6,6.5,8.09
+10,Virgin Atlantic,United Kingdom,8.2,8,8.04
+11,KLM Royal Dutch Airlines,Netherlands,8.5,8,8.01
+12,norwegian,norway,7.6,7.8,8
+13,Wizz Air,hungary,8.8,6,7.95
+14,flybe,United Kingdom,8.5,6.3,7.94
+15,Turkish Airlines,turkey,7.3,8,7.94
+16,Emirates,United Arab Emirates,7.8,8.3,7.91
+17,El Al Israel Airlines,israel,8.1,6.3,7.9
+18,Aer Lingus,ireland,8.4,8,7.9
+19,Air Dolomiti,italy,8.6,8,7.88
+20,Transavia.com,france,8.5,6.3,7.88
+21,British Airways,United Kingdom,7.7,7.8,7.85
+22,Ethiopian Airlines,ethiopia,8.4,7.8,7.85
+23,American Airlines,USA,7.8,6.3,7.84
+24,Kenya Airways,kenya,9.2,6.3,7.79
+25,Luxair,luxembourg,8.4,6.8,7.78
+26,Aeromexico,mexico,7.9,6.3,7.78
+27,City Jet,ireland,8,6.3,7.77
+28,Latam Airlines,chile,7.8,6.3,7.76
+29,LOT Polish Airlines,poland,7.9,6.3,7.75
+30,Air Europe,spain,8.3,6,7.7
+31,Eurowings,germany,8,6,7.7
+32,Croatia Airlines,croatia,8.1,6.3,7.69
+33,Swiss,switzerland,7.6,8,7.68
+34,Air France,france,7.5,7.8,7.67
+35,China Southern Airlines,china,7.4,7.8,7.65
+36,SAS Scandinavian Airlines,sweden,7.2,6.5,7.65
+37,United Airlines,USA,7.9,6,7.59
+38,Oman Air,oman,7.3,7.8,7.57
+39,Ukraine International Airlines,ukraine,9.1,4.5,7.42
+40,Air Canada,Canada,5.5,7.8,7.41
+41,Westjet,Canada,6.2,6.5,7.39
+42,Air Baltic Corporation,latvia,9.1,6.3,7.37
+43,Finnair,finland,7,8,7.37
+44,Air Transat ATInc.,Canada,6.2,6.3,7.37
+45,Icelandair,iceland,7.8,6.3,7.36
+46,Garuda Indonesia,indonesia,7.6,9.8,7.36
+47,Delta Air Lines,USA,8.1,6.5,7.33
+48,Brussels Airlines,belgium,7.7,6.3,7.33
+49,Tarom,romania,7.8,6.3,7.31
+50,Saudi Arabian Airlines,Saudi Arabia,8.1,7.8,7.29
+51,Thomas Cook Airlines,United Kingdom,8,6.3,7.23
+52,Adria Airways,slovenia,7.9,6,7.23
+53,Avianca,colombia,7.4,6.5,7.22
+54,Vueling Airlines,spain,8.8,6,7.09
+55,Aeroflot Russian Airlines,russia,7.9,8,6.97
+56,Czech Airlines,Czechia,7.4,6,6.81
+57,Kuwait Airways,kuwait,7.6,6,6.66
+58,Air India,india,5.8,6.3,6.61
+59,Asiana Airlines,South Korea,5.7,9.5,6.41
+60,Tap Portugal,Portugal,6.9,6.3,6.4
+61,Jet2.com,United Kingdom,8.5,6.8,6.37
+62,Thai Airways,thailand,6.9,8,6.36
+63,Jet Airways,india,6.5,6.5,6.2
+64,Aerolineas Argentinas,argentina,8.5,6.5,6.2
+65,Iberia,spain,8.4,7.8,6.13
+66,Korean Air,South Korea,6.4,8.3,6.13
+67,Ryanair,ireland,8.6,6.3,6.03
+68,Air Mauritius,mauritius,6.9,7.8,5.99
+69,Easyjet,United Kingdom,7.9,7.8,5.66
+70,Pakistan International Airlines,pakistan,6.1,6,5.43
+71,Royal Jordanian Airlines,jordan,8.3,6.3,5.13
+72,WOW Air,iceland,7.5,6,5.04
