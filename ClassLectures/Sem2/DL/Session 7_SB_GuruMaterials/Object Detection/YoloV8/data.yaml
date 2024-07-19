@@ -1,0 +1,5 @@
+train: /content/drive/MyDrive/Deep learning Mtech Residency rev+LI/DL Materials Sagarika/Class problems/Session 7/Object Detection/YoloV8/data/train/images
+val: /content/drive/MyDrive/Deep learning Mtech Residency rev+LI/DL Materials Sagarika/Class problems/Session 7/Object Detection/YoloV8/data/valid/images
+
+nc: 5
+names: ['Helmet', 'Goggles', 'Jacket', 'Gloves', 'Footwear']
