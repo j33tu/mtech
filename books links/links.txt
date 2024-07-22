@@ -7,3 +7,5 @@ https://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html
 https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/
 
 https://github.com/HumanSignal/labelImg
+
+http://tech.nitoyon.com/en/blog/2013/11/07/k-means/
